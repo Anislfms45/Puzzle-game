@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Jeux Anis</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+     
+    <link href='Game_Manager.js' rel="stylesheet" type="script/javascript">
+    
+    <link href='Style.css' rel="stylesheet" type="text/css">
+
+</head>
+<body style="background-color:grey" onload="Laod_Gameplay()">
+   
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <div>
+              <h6 class="modal-title" id="exampleModalLongTitle" style="display: inline-block ; font-size: 40px;">Game Play lunch</h6>
+              <button class="Ajout_ta btn btn-primary" style="background-color: green ; float: right" onclick="Open_scoreTab()" >Score</button>
+       
+            </div>         
+            </div>
+            <div class="modal-body">
+            <div>
+                    <label style="font-size: 35px" >joueur : </label>
+                    <input type="text" id="Player_name" style="display: inline-block;" class="form-control" id="Titre-de-la-tache" placeholder="Titre de la Tache">
+
+                </div>
+                <div>
+                        <label style="font-size: 35px" >Difficulté : </label>
+                  
+                        <select style="float: right"  class="form-control form-control-lg" id="dropdownMenu2">
+                          <option >Facile</option>
+                          <option >Moyen</option>
+                          <option >Difficile</option>
+                        </select>
+                        
+                </div>
+                <div>
+                        <label style="font-size: 35px" >Contre la montre</label>
+                    <input type="checkbox" id="check">
+
+                </div>
+                <div>
+                  <label style="font-size: 35px;">Minutes : </label>
+                  <input type='number' max="59" min="0" step="1" class="inpunum" id='minu' value ="0"disabled>
+                  <label style="font-size: 35px;">Seconds : </label>
+                  <input type='number' max="59" min="0" step="1" id="seco" class="inpunum" value="0" disabled>
+                </div>
+                
+            </div>
+            <div class="modal-footer 1">
+              <button type="reset" class="Ajout_ta btn btn-secondary" >Close</button>
+              <button type="button" class="Ajout_ta btn btn-primary" onclick="game_creator()"  >Lunch Game</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="exampleModalCenter2" tabindex="-1"  role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <br>
+              <br>
+              <h1 style="text-align: center; font-size: 70px; color : black"><i class="fas fa-hourglass-end"></i>Game Over !</h1>
+              <br>
+              <br>
+           
+              <div class="modal-footer 1">
+                <button type="button" class="Ajout_ta btn btn-danger" style="float: left; font-size:30px;" id="Menu" onclick="Laod_Gameplay()" >Menu</button>
+                <button type="button" class="Ajout_ta btn btn-success" style="float: right; font-size: 30px;"  onclick="game_creator()" >Rejouer</button>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+        <div class="modal fade" id="exampleModalCenter3" tabindex="-1" role="dialog"  aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <div>
+                  <h6 class="modal-title" id="exampleModalLongTitle" style="display: inline-block ; font-size: 40px;">Score</h6>
+           
+
+                </div>         
+                </div>
+                <div class="modal-body">
+                  <h1 style="color: black; font-size: 40px;"><i class="fas fa-clock"></i> Mode Normal</h1>
+                    <table>
+                        <tr>
+                          <th>#</th>
+                          <th>Joueur</th>
+                          <th>Difficulté</th>
+                          <th>Temps ecoulé</th>
+                        </tr>
+                        
+                    
+                      </table>
+                  <h1 style="color: black; font-size: 40px;"><i class="fas fa-hourglass"></i> Mode Contre la Montre</h1>
+                  <table>
+                      <tr>
+                        <th>#</th>
+                        <th>Joueur</th>
+                        <th>Difficulté</th>
+                        <th>Temps défini</th>
+                        <th>Temps écoulé</th>
+                      </tr>
+                      
+                  
+                    </table>
+                    <hr>
+
+                      
+      
+                  
+                
+      
+                <div class="modal-footer 1">
+                  <button type="button" class="Ajout_ta btn btn-danger" onclick="Laod_Gameplay()"  >Menu</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+      
+
+
+      <div   class="container"  id="center_game">
+     
+      <div class="container" id="Info_Player" style="display: none;">
+        <label class='ele badge badge-primary' style='background-color:blue; font-size: 40px;' id="Name_Player"></label>
+
+          <label class='ele badge badge-primary' style='background-color:blue; font-size: 40px;' id="Niveau"></label>
+          <label class='ele badge badge-primary' style=' font-size: 40px;' id="timing"><i class="fas fa-hourglass-start" style="size: 50px; color: black;"></i></label>
+       
+      </div>
+      <hr>
+
+     
+    
+       <div class="Game_container2" id="center2" >
+       </div>
+       
+      
+  
+    <div class="Game_container" id="center">
+       
+    </div>
+    <br>
+    <button class="btn btn-danger" style="font-size: 40px; margin-left: 40%; margin-top: 15px; " id="recommencer" >Recommencer</button>
+
+  </div>
+  <button style="display: none; " id="ke"></button>
+
+
+
+<script src="Game_Manager.js">
+
+
+</script>
+
+
+</body>
+
+
+</html>
+
